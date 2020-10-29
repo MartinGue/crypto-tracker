@@ -11,6 +11,9 @@ import comp from '../logos/comp.png';
 import uni from '../logos/uni.png';
 import gnt from '../logos/gnt.png';
 
+require('dotenv').config();
+const rapidApi = process.env.REACT_APP_RAPID_API_KEY;
+
 const axios = require("axios");
 
 class App extends Component {
@@ -18,9 +21,8 @@ class App extends Component {
   async componentWillMount() {
     await this.getData()
   }
-
   //getting&setting cryptocurrencies data
-  getData = () => {
+  getData = () => {    
     //getting ccurencies data
     axios({
       "method":"GET",
@@ -28,7 +30,7 @@ class App extends Component {
       "headers":{
         "content-type":"application/octet-stream",
         "x-rapidapi-host":"coinpaprika1.p.rapidapi.com",
-        "x-rapidapi-key":"YOUR_RAPID_API_KEY",
+        "x-rapidapi-key": rapidApi,
         "useQueryString":true
       }
     })
@@ -75,13 +77,15 @@ class App extends Component {
     })
 
     //getting ccurrency market data
+
+
     axios({
       "method":"GET",
       "url":"https://coinpaprika1.p.rapidapi.com/global",
       "headers":{
       "content-type":"application/octet-stream",
       "x-rapidapi-host":"coinpaprika1.p.rapidapi.com",
-      "x-rapidapi-key":"YOUR_RAPID_API_KEY",
+      "x-rapidapi-key":rapidApi,
       "useQueryString":true
       }
     })
@@ -112,7 +116,7 @@ class App extends Component {
         <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow text-monospace text-white">
           <a
             className="navbar-brand col-sm-3 col-md-2 mr-0"
-            href="http://www.dappuniversity.com/bootcamp"
+            href="https://www.blockchain-consultancy.eu"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -145,8 +149,8 @@ class App extends Component {
                       <tr>
                         <th scope="col">Rank</th>
                         <th scope="col">Logo</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Price</th>
+                        <th scope="col">Naam</th>
+                        <th scope="col">Prijs</th>
                         <th scope="col">Market Cap</th>
                       </tr>
                     </thead>
@@ -164,8 +168,7 @@ class App extends Component {
                         })}
                       </tbody>
                   </table>
-                }
-              </main>
+                </main>
             </div>
           </div>
       </div>
